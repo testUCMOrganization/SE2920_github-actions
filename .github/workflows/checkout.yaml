@@ -29,8 +29,8 @@ jobs:
       - name: Post a message in Slack
         uses: slackapi/slack-github-action@v2.1.1
         with:
-          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}    # ✅ FIXED
-          webhook-type: incoming-webhook               # ✅ correct
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}   
+          webhook-type: incoming-webhook               
           payload: |
             {
               "text": "message from checkout.yaml workflow"
