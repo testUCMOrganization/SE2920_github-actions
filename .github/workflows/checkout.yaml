@@ -1,19 +1,20 @@
-name : checkout
-on : workflow_dispatch
-jobs:
-  no-checkout-job :
-    runs-on : ubuntu-latest
-    steps :
-      - name : Checkout repository
-        run : cat README.md
+name: checkout
+on: workflow_dispatch
 
-  checkout-job :
-    runs-on : ubuntu-latest
-    steps :
-      - name : Checkout repository
-        uses : actions/checkout@v4
-      - name : Verify checkout
-        run : cat README.md
+jobs:
+  no-checkout-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        run: cat README.md
+
+  checkout-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Verify checkout
+        run: cat README.md
 
   context:
     runs-on: ubuntu-latest
@@ -25,10 +26,12 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
     steps:
-    - name: Post a message in a channel
-      uses: slackapi/slack-github-action@v2.1.1
-      with:
-        webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
-        webhook-type: 'incoming-webhook'
-        payload: |
-          text: "message from checkout.yaml workflow"
+      - name: Post a message in Slack
+        uses: slackapi/slack-github-action@v2.1.1
+        with:
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}    # ✅ FIXED
+          webhook-type: incoming-webhook               # ✅ correct
+          payload: |
+            {
+              "text": "message from checkout.yaml workflow"
+            }
