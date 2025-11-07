@@ -25,10 +25,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
     steps:
-      - name: Post a message in a channel
-        uses: slackapi/slack-github-action@v2.1.1
-        with:
-          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
-          webhook-type: 'incoming-webhook'
-          payload: |
-            text: "message from checkout.yaml workflow"
+    - name: Post a message in a channel
+      uses: slackapi/slack-github-action@v2.1.1
+      with:
+        webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+        webhook-type: 'incoming-webhook'
+        payload: |
+          text: "message from checkout.yaml workflow"
